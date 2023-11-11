@@ -47,6 +47,7 @@
 		090713072AF9CCAA00F1A04B = {
 			isa = PBXGroup;
 			children = (
+				090713172AF9CCAB00F1A04B /* Assets.xcassets */,
 				090713122AF9CCAA00F1A04B /* GKOG */,
 				090713112AF9CCAA00F1A04B /* Products */,
 			);
@@ -67,7 +68,6 @@
 				090713232AF9CCD800F1A04B /* Utils */,
 				090713222AF9CCD200F1A04B /* Model */,
 				090713212AF9CCCB00F1A04B /* View */,
-				090713172AF9CCAB00F1A04B /* Assets.xcassets */,
 				090713192AF9CCAB00F1A04B /* Preview Content */,
 			);
 			path = GKOG;
