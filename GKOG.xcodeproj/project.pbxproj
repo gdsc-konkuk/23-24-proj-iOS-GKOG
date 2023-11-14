@@ -17,6 +17,7 @@
 		090713322AF9CDB400F1A04B /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090713312AF9CDB400F1A04B /* DetailView.swift */; };
 		090713342AF9CDC000F1A04B /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090713332AF9CDC000F1A04B /* CommentView.swift */; };
 		090713362AF9CDC900F1A04B /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090713352AF9CDC800F1A04B /* MyPageView.swift */; };
+		233B31CA2B03A87A00297DAA /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233B31C92B03A87A00297DAA /* TabBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		090713312AF9CDB400F1A04B /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		090713332AF9CDC000F1A04B /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		090713352AF9CDC800F1A04B /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
+		233B31C92B03A87A00297DAA /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				090713282AF9CD0B00F1A04B /* Event Detail */,
 				0907132A2AF9CD1A00F1A04B /* Comment */,
 				090713292AF9CD1300F1A04B /* My Page */,
+				233B31C92B03A87A00297DAA /* TabBarView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				090713162AF9CCAA00F1A04B /* ContentView.swift in Sources */,
+				233B31CA2B03A87A00297DAA /* TabBarView.swift in Sources */,
 				090713362AF9CDC900F1A04B /* MyPageView.swift in Sources */,
 				0907132C2AF9CD7F00F1A04B /* MapView.swift in Sources */,
 				090713302AF9CD9800F1A04B /* ListView.swift in Sources */,
