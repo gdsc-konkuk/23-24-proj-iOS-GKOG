@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+var screenWidth = UIScreen.main.bounds.size.width
+var screenHeight = UIScreen.main.bounds.size.height
+
 struct EntryView: View {
     
     var body: some View {
@@ -16,27 +19,27 @@ struct EntryView: View {
                 VStack {
                     Spacer()
                     Image("Logo")
-                        .padding(.bottom, 100)
+                        .padding(.bottom, screenHeight * 0.15)
                     VStack(spacing: 40){
                         Rectangle()
-                            .frame(width: 292, height: 1)
+                            .frame(width: screenWidth * 0.8, height: 1)
                         VStack(spacing : 15){
                             Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
                                 //애플 로그인 버튼 삽입시 적절한 크기로 생성
                                 Text("애플 로그인")
                             })
-                            .frame(width: 200, height: 50)
+                            .frame(width: screenWidth * 0.8, height: 50)
                             Button(action: {}, label: {
                                 // 구글 로그인 버튼 삽입시 적절한 크기로 생성
                                 Text("구글 로그인")
                             })
-                            .frame(width: 200, height: 50)
+                            .frame(width: screenWidth * 0.8, height: 50)
                         }
                         Rectangle()
-                            .frame(width: 292, height: 1)
+                            .frame(width: screenWidth * 0.8, height: 1)
                     }
                     Spacer()
-                        .frame(height: 150)
+                        .frame(height: screenHeight * 0.2)
                     Text("GDSC Konkuk iOS Team.")
                         .font(.footnote)
                         .frame(alignment: .bottom)
