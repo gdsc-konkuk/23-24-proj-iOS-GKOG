@@ -9,7 +9,7 @@ import SwiftUI
 
 // 뷰 전체 폭 길이
 let screenWidth = UIScreen.main.bounds.size.width
-    
+
 // 뷰 전체 높이 길이
 let screenHeight = UIScreen.main.bounds.size.height
 
@@ -17,8 +17,13 @@ struct AgreementPage: View {
     
     // 각각의 항목에 check 유무를 확인하는 배열
     @State var agreement: [Bool] = Array(repeating: false, count: 4)
-    // 모두 동의 버튼 클릭 유무를 확인하는 배열
-    @State var allAgree: Bool = false
+    
+    // 모든 항목이 동의된 경우를 확인하는 계산된 속성
+    var allAgreed: Bool {
+        // Swift 배열 메소드 -> agreement 요소들이 모두 true이면
+        // allAgreed -> true , 아니면 false
+        return agreement.allSatisfy { $0 }
+    }
     
     var body: some View {
         NavigationStack {
@@ -52,17 +57,17 @@ struct AgreementPage: View {
                         Text("모두 동의")
                             .foregroundStyle(Color.hexA98ACE)
                             .font(.system(size: 16, weight: .semibold))
-                        CheckBox()
+                        CheckAllBox(agreement: $agreement)
                     }
                     .padding(.horizontal)
                     Rectangle()
                         .frame(width: screenWidth * 0.9, height: 2)
                     //상세 동의
                     VStack(spacing: 17) {
-                        AgreementCard(label: "만 14세 이상", url: "https://www.notion.so/mocacong/78a169a2532a4e9e94fe2ae2da41c6a4")
-                        AgreementCard(label: "이용약관", url: "https://www.notion.so/mocacong/78a169a2532a4e9e94fe2ae2da41c6a4")
-                        AgreementCard(label: "위치기반 서비스 이용약관", url: "https://www.notion.so/mocacong/78a169a2532a4e9e94fe2ae2da41c6a4")
-                        AgreementCard(label: "개인정보 수집 및 이용 동의", url: "https://www.notion.so/mocacong/78a169a2532a4e9e94fe2ae2da41c6a4")
+                        AgreementCard(label: "만 14세 이상", url: "https://www.notion.so/mocacong/78a169a2532a4e9e94fe2ae2da41c6a4", idx: 0, agreement: $agreement)
+                        AgreementCard(label: "이용약관", url: "https://www.notion.so/mocacong/78a169a2532a4e9e94fe2ae2da41c6a4", idx: 1, agreement: $agreement)
+                        AgreementCard(label: "위치기반 서비스 이용약관", url: "https://www.notion.so/mocacong/78a169a2532a4e9e94fe2ae2da41c6a4", idx: 2, agreement: $agreement)
+                        AgreementCard(label: "개인정보 수집 및 이용 동의", url: "https://www.notion.so/mocacong/78a169a2532a4e9e94fe2ae2da41c6a4", idx: 3, agreement: $agreement)
                     }
                     .padding(.vertical)
                 }
@@ -74,12 +79,13 @@ struct AgreementPage: View {
                     }, label: {
                         RoundedRectangle(cornerRadius: 8)
                             .frame(width: screenWidth * 0.87, height: 50)
-                            .foregroundColor(Color.hexA98ACE)
+                            .foregroundColor(allAgreed ? Color.hexA98ACE : Color.hex7E7E7E)
                             .overlay {
                                 Text("가입하기")
                                     .foregroundColor(.hexFFFFFF)
                             }
                     })
+                    .disabled(!allAgreed)
                 }
                 .padding(.bottom, screenHeight * 0.25)
             }
@@ -89,19 +95,53 @@ struct AgreementPage: View {
 }
 
 @ViewBuilder
-func CheckBox() -> some View {
+// CheckBox(인덱스, agreement 배열)
+// 인덱스에 입력된 agreement이 true면은 checkmark 표시, false면 checkmark 가림
+func CheckBox(idx: Int, agreement: Binding<[Bool]>) -> some View {
     Button(action: {
-        
+        agreement.wrappedValue[idx] = !agreement.wrappedValue[idx]
     }, label: {
-        //if agreement :
         RoundedRectangle(cornerRadius: 6)
             .stroke(Color.hex7E7E7E, lineWidth: 0.5)
             .frame(width: 25, height: 25)
+            .overlay(
+                Image(systemName: agreement.wrappedValue[idx] ? "checkmark" : "square")
+                    .resizable()
+                    .frame(width: 25, height: 25)
+                    .foregroundColor(agreement.wrappedValue[idx] ? .hexA98ACE : .clear)
+            )
     })
 }
 
 @ViewBuilder
-func AgreementCard(label: String, url: String) -> some View {
+func CheckAllBox(agreement: Binding<[Bool]>) -> some View {
+    Button(action: {
+        let allTrue = Array(repeating: true, count: agreement.wrappedValue.count)
+        agreement.wrappedValue = allTrue
+        
+        // 동시에 각 CheckBox의 상태를 갱신
+        for idx in 0..<allTrue.count {
+            CheckBox(idx: idx, agreement: agreement)
+        }
+        
+    }, label: {
+        RoundedRectangle(cornerRadius: 6)
+            .stroke(Color.hex7E7E7E, lineWidth: 0.5)
+            .frame(width: 25, height: 25)
+            .overlay(
+                Image(systemName: agreement.wrappedValue.allSatisfy { $0 } ? "checkmark" : "square")
+                    .resizable()
+                    .frame(width: 25, height: 25)
+                    .foregroundColor(agreement.wrappedValue.allSatisfy { $0 } ? .hexA98ACE : .clear)
+            )
+    })
+}
+
+
+@ViewBuilder
+// 기존 AgreementCard 에서 idx, agreement을 인자로 받아줌
+// idx -> agreement[idx]에 해당되는 값을 true, false로 toggle
+func AgreementCard(label: String, url: String, idx: Int, agreement: Binding<[Bool]>) -> some View {
     HStack {
         Text(label)
         Spacer()
@@ -114,7 +154,7 @@ func AgreementCard(label: String, url: String) -> some View {
                 .foregroundColor(.hex7E7E7E)
                 .font(.system(size: 14))
         })
-        CheckBox()
+        CheckBox(idx: idx, agreement: agreement)
     }
     .padding(.horizontal)
 }
