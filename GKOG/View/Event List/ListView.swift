@@ -55,7 +55,26 @@ struct ListView: View {
         
     }
     //이벤트 카드
-
+    
+    // Category enum으로 설정해서 공유하고 싶은데 혹시 충돌날까봐 안으로 들여옴.
+     enum Category {
+         case study
+         case smallMeeting
+         case impromptu
+         case publicRelation
+         var representColor: Color {
+             switch self {
+             case .study:
+                 return Color.hexF4E698
+             case .smallMeeting:
+                 return Color.hexC8E48B
+             case .impromptu:
+                 return Color.hexBBE8F6
+             case .publicRelation:
+                 return Color.hexF6BFBB
+             }
+         }
+     }
   
 }
 
