@@ -29,7 +29,7 @@ struct MapView: View {
                 .overlay {
                     VStack {
                         Spacer()
-                            .frame(width: screenWidth, height: 44)
+                            .frame(width: screenWidth * 0.6, height: screenHeight * 0.08)
                         RoundedRectangle(cornerRadius: 10)
                             .overlay{
                                 HStack(spacing: 0) {
@@ -46,7 +46,7 @@ struct MapView: View {
                                 }
                             }
                             .foregroundColor(.hexFFFFFF)
-                            .frame(width: screenWidth * 0.95, height: 47)
+                            .frame(width: screenWidth * 0.9, height: 47)
                         Spacer()
                     }
                 }
