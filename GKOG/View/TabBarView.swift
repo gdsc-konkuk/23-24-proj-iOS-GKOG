@@ -10,8 +10,6 @@ import SwiftUI
 struct TabBarView: View {
     @State var selectedIdx = 0
     
-    let tabBarInfo = [["지도", "map.fill"], ["달력", "calendar"], ["모아보기", "magnifyingglass"], ["my", "person.fill"]]
-    
     var body: some View {
         VStack {
             // 탭뷰
@@ -37,7 +35,7 @@ struct TabBarView: View {
                         Label("my", systemImage: "person.fill")
                     })
             }
-            .background(Color.hexF8F8F8)
+            .accentColor(Color.hex000000)
         }
     }
 }
