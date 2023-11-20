@@ -8,12 +8,6 @@
 import SwiftUI
 import MapKit
 
-// 뷰 전체 폭 길이
-let screenWidth = UIScreen.main.bounds.size.width
-    
-// 뷰 전체 높이 길이
-let screenHeight = UIScreen.main.bounds.size.height
-
 struct MapView: View {
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.5400566, longitude: 127.0702592), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
     
