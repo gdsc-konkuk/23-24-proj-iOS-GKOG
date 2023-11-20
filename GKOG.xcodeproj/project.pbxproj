@@ -17,6 +17,10 @@
 		090713322AF9CDB400F1A04B /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090713312AF9CDB400F1A04B /* DetailView.swift */; };
 		090713342AF9CDC000F1A04B /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090713332AF9CDC000F1A04B /* CommentView.swift */; };
 		090713362AF9CDC900F1A04B /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090713352AF9CDC800F1A04B /* MyPageView.swift */; };
+		09129BF92B01E0A000636C5C /* AgreementPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09129BF82B01E0A000636C5C /* AgreementPage.swift */; };
+		09129BFB2B01E0AF00636C5C /* RegisterPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09129BFA2B01E0AF00636C5C /* RegisterPage.swift */; };
+		0972BE342B0B2259002A3C87 /* ProfileImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0972BE332B0B2259002A3C87 /* ProfileImagePicker.swift */; };
+		0972BE362B0B2281002A3C87 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0972BE352B0B2281002A3C87 /* Member.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +35,10 @@
 		090713312AF9CDB400F1A04B /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		090713332AF9CDC000F1A04B /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		090713352AF9CDC800F1A04B /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
+		09129BF82B01E0A000636C5C /* AgreementPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementPage.swift; sourceTree = "<group>"; };
+		09129BFA2B01E0AF00636C5C /* RegisterPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPage.swift; sourceTree = "<group>"; };
+		0972BE332B0B2259002A3C87 /* ProfileImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePicker.swift; sourceTree = "<group>"; };
+		0972BE352B0B2281002A3C87 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,7 @@
 		090713222AF9CCD200F1A04B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0972BE352B0B2281002A3C87 /* Member.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -106,6 +115,7 @@
 		090713232AF9CCD800F1A04B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				0972BE332B0B2259002A3C87 /* ProfileImagePicker.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -113,6 +123,8 @@
 		090713242AF9CCE200F1A04B /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				09129BF82B01E0A000636C5C /* AgreementPage.swift */,
+				09129BFA2B01E0AF00636C5C /* RegisterPage.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -239,7 +251,11 @@
 				090713362AF9CDC900F1A04B /* MyPageView.swift in Sources */,
 				0907132C2AF9CD7F00F1A04B /* MapView.swift in Sources */,
 				090713302AF9CD9800F1A04B /* ListView.swift in Sources */,
+				09129BF92B01E0A000636C5C /* AgreementPage.swift in Sources */,
+				09129BFB2B01E0AF00636C5C /* RegisterPage.swift in Sources */,
 				090713322AF9CDB400F1A04B /* DetailView.swift in Sources */,
+				0972BE362B0B2281002A3C87 /* Member.swift in Sources */,
+				0972BE342B0B2259002A3C87 /* ProfileImagePicker.swift in Sources */,
 				0907132E2AF9CD8C00F1A04B /* CalendarView.swift in Sources */,
 				090713342AF9CDC000F1A04B /* CommentView.swift in Sources */,
 				090713142AF9CCAA00F1A04B /* GKOGApp.swift in Sources */,

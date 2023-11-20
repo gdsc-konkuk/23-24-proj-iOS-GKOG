@@ -14,7 +14,6 @@ let screenWidth = UIScreen.main.bounds.size.width
 let screenHeight = UIScreen.main.bounds.size.height
 
 struct AgreementPage: View {
-    
     // 각각의 항목에 check 유무를 확인하는 배열
     @State var agreement: [Bool] = Array(repeating: false, count: 4)
     
@@ -24,6 +23,7 @@ struct AgreementPage: View {
         // allAgreed -> true , 아니면 false
         return agreement.allSatisfy { $0 }
     }
+    @State var member: Member = Member()
     
     var body: some View {
         NavigationStack {
@@ -75,7 +75,7 @@ struct AgreementPage: View {
                 //가입하기 버튼
                 VStack {
                     NavigationLink(destination: {
-                        RegisterPage()
+                        RegisterPage(member: $member)
                     }, label: {
                         RoundedRectangle(cornerRadius: 8)
                             .frame(width: screenWidth * 0.87, height: 50)
