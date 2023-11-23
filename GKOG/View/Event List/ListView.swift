@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct ListView: View {
-    let systemWidth : CGFloat = UIScreen.main.bounds.width
-    let systemHeight : CGFloat = UIScreen.main.bounds.height
+    
     
     @State var eventSearchText: String = ""
     
@@ -26,7 +25,7 @@ struct ListView: View {
             //이벤트 검색창
             RoundedRectangle(cornerRadius: 20)
                 .stroke()
-                .frame(width: systemWidth * 0.9, height: systemHeight * 0.045)
+                .frame(width: screenWidth * 0.9, height: screenHeight * 0.045)
                 .overlay(alignment: .leading, content: {
                     HStack {
                         Image(systemName: "magnifyingglass")
@@ -41,6 +40,9 @@ struct ListView: View {
                 assignedEventCard(category: Category.smallMeeting, title: "이벤트", tag: "#iOS #비정규 #노회식", time: "23-12-06 - 23-12-06", location: "지존iOS 광진구 정복")
                 assignedEventCard(category: Category.study, title: "이벤트", tag: "#iOS #비정규 #노회식", time: "23-12-06 - 23-12-06", location: "지존iOS 광진구 정복")
                 assignedEventCard(category: Category.impromptu, title: "이벤트", tag: "#iOS #비정규 #노회식", time: "23-12-06 - 23-12-06", location: "지존iOS 광진구 정복")
+                assignedEventCard(category: Category.impromptu, title: "이벤트", tag: "#iOS #비정규 #노회식", time: "23-12-06 - 23-12-06", location: "지존iOS 광진구 정복")
+                assignedEventCard(category: Category.impromptu, title: "이벤트", tag: "#iOS #비정규 #노회식", time: "23-12-06 - 23-12-06", location: "지존iOS 광진구 정복")
+                assignedEventCard(category: Category.impromptu, title: "이벤트", tag: "#iOS #비정규 #노회식", time: "23-12-06 - 23-12-06", location: "지존iOS 광진구 정복")
                 
             })
             //이벤트 생성 버튼
@@ -48,7 +50,7 @@ struct ListView: View {
             Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
                 RoundedRectangle(cornerRadius: 8)
                     .foregroundColor(.hexB38DE2)
-                    .frame(width:systemWidth * 0.92, height: systemHeight * 0.063)
+                    .frame(width:screenWidth * 0.92, height: screenHeight * 0.063)
                     .overlay(content: {
                         Text("이벤트 생성")
                             .font(.system(size: 15))
