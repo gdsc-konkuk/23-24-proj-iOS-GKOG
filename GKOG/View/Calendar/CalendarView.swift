@@ -20,7 +20,13 @@ struct CalendarView: View {
             VStack {
                 // 달력 UI 생성하는 CalendarFunction
                 CalendarFunction()
-                // 해당 날짜의 계획된 세션을 출력ㄴ리
+                // 해당 날짜의 계획된 세션을 ScrollView를 통해 조정
+                ScrollView {
+                    WorkList()
+                }
+                // maxHeight를 우선적으로 screenHeight * 0.3으로 설정
+                .frame(maxHeight: screenHeight * 0.3)
+                Spacer()
             }
             // 화살표를 통해 월을 바꾸면 달력 내 모양도 바뀌는 것을 반영하기 위한 updateDate 함수
             .onChange(of: selectedMonth) {
@@ -110,7 +116,6 @@ struct CalendarView: View {
             }
         }
         .padding(.horizontal, 32)
-        Spacer()
     }
         
     
