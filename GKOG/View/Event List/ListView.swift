@@ -7,9 +7,29 @@
 
 import SwiftUI
 
+// Category 및 Category별 색상을 enum으로 설정.
+enum Category {
+    case study
+    case smallMeeting
+    case impromptu
+    case publicRelation
+    var representColor: Color {
+        switch self {
+        case .study:
+            return Color.hexF4E698
+        case .smallMeeting:
+            return Color.hexC8E48B
+        case .impromptu:
+            return Color.hexBBE8F6
+        case .publicRelation:
+            return Color.hexF6BFBB
+        }
+    }
+}
+
 struct ListView: View {
     
-    
+    @State private var showEventDetail : Bool = false
     @State var eventSearchText: String = ""
     
     var body: some View {
@@ -47,7 +67,9 @@ struct ListView: View {
             })
             //이벤트 생성 버튼
 //            Spacer()
-            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+            Button(action: {
+                self.showEventDetail = true
+            }, label: {
                 RoundedRectangle(cornerRadius: 8)
                     .foregroundColor(.hexB38DE2)
                     .frame(width:screenWidth * 0.92, height: screenHeight * 0.063)
@@ -56,6 +78,9 @@ struct ListView: View {
                             .font(.system(size: 15))
                             .foregroundColor(.hexFFFFFF)
                     })
+            })
+            .sheet(isPresented: self.$showEventDetail, content: {
+                DetailView()
             })
             
         }
@@ -91,25 +116,7 @@ struct ListView: View {
             .padding()
         }
     }
-    // Category enum으로 설정해서 공유하고 싶은데 혹시 충돌날까봐 안으로 들여옴.
-    enum Category {
-        case study
-        case smallMeeting
-        case impromptu
-        case publicRelation
-        var representColor: Color {
-            switch self {
-            case .study:
-                return Color.hexF4E698
-            case .smallMeeting:
-                return Color.hexC8E48B
-            case .impromptu:
-                return Color.hexBBE8F6
-            case .publicRelation:
-                return Color.hexF6BFBB
-            }
-        }
-    }
+
 }
 
 #Preview {
