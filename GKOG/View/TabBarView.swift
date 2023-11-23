@@ -20,7 +20,7 @@ struct TabBarView: View {
                         Label("지도", systemImage: "map.fill")
                     })
                 // 달력 탭
-                CalendarView()
+                CalendarPage()
                     .tabItem({
                         Label("달력", systemImage: "calendar")
                     })

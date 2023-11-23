@@ -7,9 +7,19 @@
 
 import SwiftUI
 
-struct CalendarView: View {
+// 날짜 구조체
+struct CalendarDate: Identifiable {
+    // id값
+    let id = UUID()
+    // 몇 일 e.g -> day: 27, day: 28 ...
+    var day: Int
+    // 전체 날짜 정보
+    var date: Date
+}
+
+struct CalendarPage: View {
     // 요일 배열
-    let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     
     // 선택된 월, 날짜를 관리하는 상태 속성
     @State var selectedMonth = 0
@@ -19,10 +29,10 @@ struct CalendarView: View {
         VStack {
             VStack {
                 // 달력 UI 생성하는 CalendarFunction
-                CalendarFunction()
+                CalendarView()
                 // 해당 날짜의 계획된 세션을 ScrollView를 통해 조정
                 ScrollView {
-                    WorkList()
+                    EventList()
                 }
                 // Height를 우선적으로 screenHeight * 0.3으로 설정
                 .frame(maxHeight: screenHeight * 0.3)
@@ -38,7 +48,7 @@ struct CalendarView: View {
     
     // 달력 UI 생성
     @ViewBuilder
-    func CalendarFunction() -> some View {
+    func CalendarView() -> some View {
         VStack {
             // 연도 출력
             Text(selectedDate.printYear())
@@ -50,9 +60,7 @@ struct CalendarView: View {
             HStack {
                 //  '<' 버튼 -> 이전 월로 이동하는 버튼
                 Button {
-                    withAnimation {
-                        selectedMonth -= 1
-                    }
+                    selectedMonth -= 1
                 } label: {
                     Image(systemName: "arrowtriangle.left.fill")
                         .frame(width: 18, height: 18)
@@ -71,9 +79,7 @@ struct CalendarView: View {
                 
                 // '>' 버튼 -> 다음 월로 이동하는 버튼
                 Button {
-                    withAnimation {
-                        selectedMonth += 1
-                    }
+                    selectedMonth += 1
                 } label: {
                     Image(systemName: "arrowtriangle.right.fill")
                         .frame(width: 18, height: 18)
@@ -147,7 +153,7 @@ struct CalendarView: View {
         var dates = currentMonth.datesOfMonth().map({CalendarDate(day: calendar.component(.day, from: $0), date: $0)})
         
         // 현재 달의 첫 날이 무슨 요일인지 확인 -> (월요일, 1), (화요일, 2) ... 이런식으로 저장 -> 일요일 기준 시 "-1"부분 삭제
-        let firstDayOfWeek = calendar.component(.weekday, from: dates.first?.date ?? Date()) - 1
+        let firstDayOfWeek = calendar.component(.weekday, from: dates.first?.date ?? Date())
         
         // 첫 주의 공백을 채우기 위해 빈 날짜를 -1로 추가
         for _ in 0..<firstDayOfWeek - 1 {
@@ -157,16 +163,6 @@ struct CalendarView: View {
         // CaldendarDate(날짜) 배열 반환
         return dates
     }
-}
-
-// 날짜 구조체
-struct CalendarDate: Identifiable {
-    // id값
-    let id = UUID()
-    // 몇 일 e.g -> day: 27, day: 28 ...
-    var day: Int
-    // 전체 날짜 정보
-    var date: Date
 }
 
 // extension을 Date() 날짜 관련 기능 확장
@@ -233,5 +229,5 @@ extension Date {
 }
 
 #Preview {
-    CalendarView()
+    CalendarPage()
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WorkList: View {
+struct EventList: View {
     var body: some View {
         // 가장 큰 테두리 사각형
         RoundedRectangle(cornerRadius: 10)
