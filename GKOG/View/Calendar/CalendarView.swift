@@ -24,7 +24,7 @@ struct CalendarView: View {
                 ScrollView {
                     WorkList()
                 }
-                // maxHeight를 우선적으로 screenHeight * 0.3으로 설정
+                // Height를 우선적으로 screenHeight * 0.3으로 설정
                 .frame(maxHeight: screenHeight * 0.3)
                 Spacer()
             }
@@ -99,7 +99,7 @@ struct CalendarView: View {
         // LazyVGrid -> 수평 방향으로 나열된 그리드 레이아웃 생성하는 SwiftUI 컨테이너
         // GridItem -> flexible 한 너비를 가진, count : 7개의 열로 된 그리드를 생성
         LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
-            // fetchDates를 통해 나온 값을
+            // fetchDates를 통해 나온 행에 맞춰 7개씩 출력
             ForEach(fetchDates()){ value in
                 ZStack {
                     if value.day != -1 {
