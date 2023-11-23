@@ -107,7 +107,7 @@ struct CalendarPage: View {
         LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
             // fetchDates를 통해 나온 행에 맞춰 7개씩 출력
             ForEach(fetchDates()){ value in
-                ZStack {
+                VStack {
                     if value.day != -1 {
                         // 날짜가 있는 경우 텍스트 표시
                         Text("\(value.day)")
