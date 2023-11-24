@@ -15,6 +15,10 @@ struct CalendarDate: Identifiable {
     var day: Int
     // 전체 날짜 정보
     var date: Date
+    // 이벤트 리스트
+    // -> var event: Event -> event Entity 만들어 질 시 optional  값으로 넣은 뒤
+    // --> 만약 nil 값이면 그대로, nil이 아니라면 달력 내 날짜 하단에 줄 표시
+    //var event: Int
 }
 
 struct CalendarPage: View {
@@ -109,15 +113,30 @@ struct CalendarPage: View {
             ForEach(fetchDates()){ value in
                 VStack {
                     if value.day != -1 {
-                        // 날짜가 있는 경우 텍스트 표시
-                        Text("\(value.day)")
-                            .foregroundStyle(Color.hex4E483C)
-                            .font(.system(size: 20))
+                        // 날짜가 있는 경우 , 당일에는 뒤에 원 표시
+                        if value.date.string() == Date().string() {
+                            Circle()
+                                .frame(width: 32, height: 32)
+                                .foregroundStyle(Color.hex4E483C)
+                                .overlay {
+                                    Text("\(value.day)")
+                                        .foregroundStyle(Color.hexFFFFFF)
+                                    Rectangle()
+                                        .foregroundStyle(Color.hexB38DE2)
+                                        .frame(width: 32, height: 3)
+                                        .position(x: 16.5, y: 40)
+                                }
+                        }
+                        else {
+                            Text("\(value.day)")
+                        }
                     } else {
                         // 빈 날짜의 경우 빈 텍스트로 표시
                         Text("")
                     }
                 }
+                .foregroundStyle(Color.hex4E483C)
+                .font(.system(size: 20))
                 .frame(width: 40, height: 46)
             }
         }
@@ -167,7 +186,6 @@ struct CalendarPage: View {
 
 // extension을 Date() 날짜 관련 기능 확장
 extension Date {
-    
     // 연도 출력해주는 함수
     func printYear() -> String {
         // DateFormatter 를 사용하여 날짜를 특정 포맷의 문자열로 변환
@@ -225,6 +243,12 @@ extension Date {
         
         // 날짜
         return dates
+    }
+    
+    func string() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy"
+        return formatter.string(from: self)
     }
 }
 
