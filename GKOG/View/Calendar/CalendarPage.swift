@@ -28,6 +28,8 @@ struct CalendarPage: View {
     // 선택된 월, 날짜를 관리하는 상태 속성
     @State var selectedMonth = 0
     @State var selectedDate = Date()
+    // 달력에서 선택되었는 지 아닌 지를 나타냄 -> 초깃값은 당일
+    @State private var onTapDate: Int? = Int(Date().getCurrentDay())
     
     var body: some View {
         VStack {
@@ -113,24 +115,39 @@ struct CalendarPage: View {
             ForEach(fetchDates()){ value in
                 VStack {
                     if value.day != -1 {
-                        // 날짜가 있는 경우 , 당일에는 뒤에 원 표시
-                        if value.date.string() == Date().string() {
-                            Circle()
-                                .frame(width: 32, height: 32)
-                                .foregroundStyle(Color.hex4E483C)
-                                .overlay {
-                                    Text("\(value.day)")
-                                        .foregroundStyle(Color.hexFFFFFF)
-                                    Rectangle()
-                                        .foregroundStyle(Color.hexB38DE2)
-                                        .frame(width: 32, height: 3)
-                                        .position(x: 16.5, y: 40)
-                                }
+                        // onTapDate : 클릭 된 게 아니라면 텍스트만 표시
+                        if onTapDate != value.day {
+                            Button {
+                                onTapDate = value.day
+                            } label: {
+                                Text("\(value.day)")
+                            }
                         }
+                        // 클릭된 거라면 뒤에 원 표시
                         else {
-                            Text("\(value.day)")
+                            Button {
+                                onTapDate = value.day
+                            } label: {
+                                ZStack {
+                                }
+                                .background(
+                                    Circle()
+                                        .frame(width: 32, height: 32)
+                                        .foregroundStyle(Color.hex4E483C)
+                                        .overlay {
+                                            Text("\(value.day)")
+                                                .foregroundStyle(Color.hexFFFFFF)
+                                            Rectangle()
+                                                .foregroundStyle(Color.hexB38DE2)
+                                                .frame(width: 32, height: 3)
+                                                .position(x: 16.5, y: 40)
+                                        }
+                                )
+                            }
                         }
-                    } else {
+                        
+                    }
+                    else {
                         // 빈 날짜의 경우 빈 텍스트로 표시
                         Text("")
                     }
@@ -142,7 +159,7 @@ struct CalendarPage: View {
         }
         .padding(.horizontal, 32)
     }
-        
+    
     
     // 월 변경 시 날짜를 업데이트 해주는 함수
     func updateDate() -> Void {
@@ -169,7 +186,11 @@ struct CalendarPage: View {
         
         // 현재 월에 속하는 날짜들을 가져와서 각 날짜를 CalendarDate로 매핑
         // 즉, dates는 CalendarDate 구조체로 이루어진 배열
-        var dates = currentMonth.datesOfMonth().map({CalendarDate(day: calendar.component(.day, from: $0), date: $0)})
+        var dates: [CalendarDate] = currentMonth.datesOfMonth().map { date in
+            var calendarDate = CalendarDate(day: calendar.component(.day, from: date), date: date)
+            calendarDate.eventList = EventList()  // 이 부분을 실제 EventList 객체로 대체
+            return calendarDate
+        }
         
         // 현재 달의 첫 날이 무슨 요일인지 확인 -> (월요일, 1), (화요일, 2) ... 이런식으로 저장 -> 일요일 기준 시 "-1"부분 삭제
         let firstDayOfWeek = calendar.component(.weekday, from: dates.first?.date ?? Date())
@@ -204,6 +225,13 @@ extension Date {
         // 대문자 M은 월을 나타냄
         formatter.dateFormat = "MM"
         
+        return formatter.string(from: self)
+    }
+    
+    // 당일 가져오는 함수
+    func getCurrentDay() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd"
         return formatter.string(from: self)
     }
     
