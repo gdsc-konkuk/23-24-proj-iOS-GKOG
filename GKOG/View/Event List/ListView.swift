@@ -10,26 +10,45 @@ import SwiftUI
 // Category 및 Category별 색상을 enum으로 설정.
 enum Category {
     case study
-    case smallMeeting
-    case impromptu
-    case publicRelation
+    case club
+    case bungae
+    case notice
     var representColor: Color {
         switch self {
         case .study:
             return Color.hexF4E698
-        case .smallMeeting:
+        case .club:
             return Color.hexC8E48B
-        case .impromptu:
+        case .bungae:
             return Color.hexBBE8F6
-        case .publicRelation:
+        case .notice:
             return Color.hexF6BFBB
         }
     }
 }
 
+struct EventData: Hashable {
+    let category: Category
+    let title: String
+    let tag: String
+    let time: String
+    let location: String
+}
+
+let eventDataList: [EventData] = [
+        EventData(category: .club, title: "이벤트", tag: "#iOS #비정규 #노회식", time: "23-12-06 - 23-12-06", location: "지존iOS 광진구 정복"),
+        EventData(category: .club, title: "이벤트", tag: "#iOS #비정규 #노회식", time: "23-12-06 - 23-12-06", location: "지존iOS 광진구 정복"),
+        EventData(category: .study, title: "이벤트", tag: "#iOS #비정규 #노회식", time: "23-12-06 - 23-12-06", location: "지존iOS 광진구 정복"),
+        EventData(category: .bungae, title: "이벤트", tag: "#iOS #비정규 #노회식", time: "23-12-06 - 23-12-06", location: "지존iOS 광진구 정복"),
+        EventData(category: .notice, title: "이벤트", tag: "#iOS #비정규 #노회식", time: "23-12-06 - 23-12-06", location: "지존iOS 광진구 정복"),
+        EventData(category: .notice, title: "이벤트", tag: "#iOS #비정규 #노회식", time: "23-12-06 - 23-12-06", location: "지존iOS 광진구 정복"),
+        EventData(category: .bungae, title: "이벤트", tag: "#iOS #비정규 #노회식", time: "23-12-06 - 23-12-06", location: "지존iOS 광진구 정복")
+    ]
+
+
 struct ListView: View {
     
-    @State private var showEventDetail : Bool = false
+    @State private var showEventDetail: Bool = false
     @State var eventSearchText: String = ""
     
     var body: some View {
@@ -56,14 +75,13 @@ struct ListView: View {
                 .foregroundColor(.hexBABABA)
             //이벤트 카드
             ScrollView(content: {
-                assignedEventCard(category: Category.smallMeeting, title: "이벤트", tag: "#iOS #비정규 #노회식", time: "23-12-06 - 23-12-06", location: "지존iOS 광진구 정복")
-                assignedEventCard(category: Category.smallMeeting, title: "이벤트", tag: "#iOS #비정규 #노회식", time: "23-12-06 - 23-12-06", location: "지존iOS 광진구 정복")
-                assignedEventCard(category: Category.study, title: "이벤트", tag: "#iOS #비정규 #노회식", time: "23-12-06 - 23-12-06", location: "지존iOS 광진구 정복")
-                assignedEventCard(category: Category.impromptu, title: "이벤트", tag: "#iOS #비정규 #노회식", time: "23-12-06 - 23-12-06", location: "지존iOS 광진구 정복")
-                assignedEventCard(category: Category.impromptu, title: "이벤트", tag: "#iOS #비정규 #노회식", time: "23-12-06 - 23-12-06", location: "지존iOS 광진구 정복")
-                assignedEventCard(category: Category.impromptu, title: "이벤트", tag: "#iOS #비정규 #노회식", time: "23-12-06 - 23-12-06", location: "지존iOS 광진구 정복")
-                assignedEventCard(category: Category.impromptu, title: "이벤트", tag: "#iOS #비정규 #노회식", time: "23-12-06 - 23-12-06", location: "지존iOS 광진구 정복")
-                
+                ForEach(eventDataList, id: \.self) { event in
+                    assignedEventCard(category: event.category,
+                                      title: event.title,
+                                      tag: event.tag,
+                                      time: event.time,
+                                      location: event.location)
+                }
             })
             //이벤트 생성 버튼
 //            Spacer()
