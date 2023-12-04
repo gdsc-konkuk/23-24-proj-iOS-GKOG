@@ -8,13 +8,14 @@
 import SwiftUI
 import PhotosUI
 
-struct ImagePicker: View {
+struct ProfileImagePicker: View {
     
     @Binding var member: Member
+    @State var profileImageData: Data?
     @State var selectedPhotos: [PhotosPickerItem] = []
     
     var profileImage: Image {
-        if let imageData = member.profileImageData, let uiImage = UIImage(data: imageData) {
+        if let imageData = profileImageData, let uiImage = UIImage(data: imageData) {
             return Image(uiImage: uiImage)
         } else {
             return Image("기본_프로필")
@@ -33,7 +34,6 @@ struct ImagePicker: View {
                 .clipShape(Circle())
                 .overlay(
                     Circle()
-                        .stroke(Color.mainGray.opacity(0.4), lineWidth: 1)
                 )
         }
         .onChange(of: selectedPhotos) { newItem in
@@ -42,7 +42,7 @@ struct ImagePicker: View {
                 switch result {
                 case .success(let data):
                     if let data = data {
-                        member.profileImageData = data
+                        profileImageData = data
                     } else {
                         print("data is nil")
                     }
