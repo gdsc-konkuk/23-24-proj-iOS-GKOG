@@ -9,6 +9,7 @@ import Foundation
 
 struct Event: Codable, Hashable, Identifiable {
     var id: Int?
+    var hasJoined: Bool?
     var title: String?
     var detail: String?
     var startInfo: String? // "YY-mm-dd-hh-ss"

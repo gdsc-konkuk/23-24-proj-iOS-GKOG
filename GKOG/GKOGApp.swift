@@ -12,6 +12,8 @@ struct GKOGApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .navigationViewStyle(StackNavigationViewStyle())
+                .environmentObject(StateManager.shared)
         }
     }
 }

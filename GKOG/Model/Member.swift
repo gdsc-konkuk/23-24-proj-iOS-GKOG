@@ -9,6 +9,7 @@ import Foundation
 
 struct Member: Codable, Hashable, Identifiable {
     var id: Int?
+    var isRegistered: Bool?
     var email: String?
     var profileImageUrl: String?
     var nickname: String?
