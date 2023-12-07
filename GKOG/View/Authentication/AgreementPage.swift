@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct AgreementPage: View {
+    
+    @EnvironmentObject var stateManager: StateManager
+    
     var allChecked: Bool {
         if self.utilizationContractChecked && self.personalInfoContractChecked && self.ageChecked && self.locationServiceContractChecked {
             return true
@@ -19,25 +22,28 @@ struct AgreementPage: View {
     @State var utilizationContractChecked: Bool = false
     @State var personalInfoContractChecked: Bool = false
     @State var locationServiceContractChecked: Bool = false
-    var fontSize: CGFloat = 14
+    
+    var fontSize: CGFloat = 16
     
     var body: some View {
         NavigationView {
             VStack {
                 //헤더
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("지콕")
-                        .font(.system(size: 28, weight: .bold))
-                        .foregroundColor(.hexA98ACE)
-                    VStack(alignment: .leading) {
-                        Text("서비스 이용을 위해")
-                        Text("아래 항목에 동의해주세요")
-                        
+                HStack {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("지콕")
+                            .font(.system(size: 28, weight: .bold))
+                            .foregroundColor(.hexA98ACE)
+                        VStack(alignment: .leading) {
+                            Text("서비스 이용을 위해")
+                            Text("아래 항목에 동의해주세요")
+                            
+                        }
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundColor(.hex4E483C)
                     }
-                    .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(.hex4E483C)
+                    Spacer()
                 }
-                .padding(.leading, -155)
                 .padding(.bottom, 60)
                 //동의 영역
                 VStack(spacing: 12) {
@@ -49,18 +55,16 @@ struct AgreementPage: View {
                             .foregroundColor(.hexA98ACE)
                             .padding(.leading)
                         Button(action: {
-                            withAnimation(.spring()) {
-                                if allChecked == true {
-                                    ageChecked = false
-                                    utilizationContractChecked = false
-                                    personalInfoContractChecked = false
-                                    locationServiceContractChecked = false
-                                } else {
-                                    ageChecked = true
-                                    utilizationContractChecked = true
-                                    personalInfoContractChecked = true
-                                    locationServiceContractChecked = true
-                                }
+                            if allChecked == true {
+                                ageChecked = false
+                                utilizationContractChecked = false
+                                personalInfoContractChecked = false
+                                locationServiceContractChecked = false
+                            } else {
+                                ageChecked = true
+                                utilizationContractChecked = true
+                                personalInfoContractChecked = true
+                                locationServiceContractChecked = true
                             }
                         }, label: {
                             CheckBox(checked: allChecked)
@@ -69,6 +73,7 @@ struct AgreementPage: View {
                     //구분선
                     Divider()
                         .frame(width: screenWidth * 0.87)
+                        .padding(.vertical)
                     //세부 동의
                     VStack(alignment: .leading, spacing: 19) {
                         //이용약관
@@ -78,7 +83,7 @@ struct AgreementPage: View {
                                 .foregroundColor(.hex5C5353)
                             Spacer()
                             Button(action: {
-                                withAnimation(.spring()) {
+                                withAnimation  {
                                     ageChecked.toggle()
                                 }
                             }, label: {
@@ -100,7 +105,7 @@ struct AgreementPage: View {
                                     .font(.system(size: 14))
                             })
                             Button(action: {
-                                withAnimation(.spring()) {
+                                withAnimation {
                                     utilizationContractChecked.toggle()
                                 }
                             }, label: {
@@ -113,7 +118,7 @@ struct AgreementPage: View {
                                 .font(.system(size: fontSize))
                                 .foregroundColor(.hex5C5353)
                             Spacer()
-                                Button(action: {
+                            Button(action: {
                                 if let url = URL(string: "https://www.notion.so/mocacong/36de943075a2454d9bc3383e909c1390") {
                                     UIApplication.shared.open(url)
                                 }
@@ -123,7 +128,7 @@ struct AgreementPage: View {
                                     .font(.system(size: 14))
                             })
                             Button(action: {
-                                withAnimation(.spring()) {
+                                withAnimation {
                                     locationServiceContractChecked.toggle()
                                 }
                             }, label: {
@@ -156,19 +161,31 @@ struct AgreementPage: View {
                 }
                 .padding(.bottom, 40)
                 //가입하기 버튼
-                Button(action: {
-                    accessManager.isAgreed = true
-                }, label: {
-                    RoundedRectangle(cornerRadius: 20)
-                        .foregroundColor(allChecked == true ? .hex_8C9F75 : .hex_A49E99)
-                        .frame(width: screenWidth * 0.9, height: 50)
-                        .overlay (
-                            Text("가입하기")
-                                .foregroundColor(.white)
-                                .font(.system(size: 17))
-                        )
-                })
-                .disabled(allChecked == false)
+                VStack {
+                    if allChecked {
+                        NavigationLink(destination: {
+                            RegisterPage()
+                        }, label: {
+                            RoundedRectangle(cornerRadius: 8)
+                                .foregroundColor(.hexA98ACE)
+                                .frame(width: screenWidth * 0.9, height: 50)
+                                .overlay (
+                                    Text("가입하기")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 17))
+                                )
+                        })
+                    } else {
+                        RoundedRectangle(cornerRadius: 8)
+                            .foregroundColor(.hexBABABA)
+                            .frame(width: screenWidth * 0.9, height: 50)
+                            .overlay (
+                                Text("가입하기")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 17))
+                            )
+                    }
+                }
                 .padding()
             }
             .padding(.top, 30)
@@ -177,8 +194,7 @@ struct AgreementPage: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading, content: {
                     Button(action: {
-                        AccessManager.shared.isAgreed = false
-                        AccessManager.shared.isLoggedIn = false
+                        StateManager.shared.userLoggedIn = false
                     }, label: {
                         HStack(spacing: 2) {
                             Image(systemName: "chevron.left")
@@ -194,12 +210,12 @@ struct AgreementPage: View {
     @ViewBuilder
     func CheckBox(checked: Bool) -> some View {
         RoundedRectangle(cornerRadius: 6)
-            .stroke(Color.hex_7E7E7E, lineWidth: 0.5)
+            .stroke(Color.hex7E7E7E, lineWidth: 0.5)
             .frame(width: 25, height: 25)
             .overlay {
                 Image(systemName: checked == true ? "checkmark" : "")
-                    .foregroundColor(.hex_B86A6A)
-                    .font(.system(size: 15, weight: .semibold))
+                    .foregroundColor(.hexD76565)
+                    .font(.system(size: 17, weight: .semibold))
             }
             .padding(.horizontal, 5)
     }

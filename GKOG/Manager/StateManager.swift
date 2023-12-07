@@ -13,7 +13,6 @@ class StateManager: ObservableObject {
 
     //User State
     @Published private var _userLoggedIn: Bool = false
-    @Published private var _userAgreed: Bool = false
     @Published private var _userRegistered: Bool = false
     @Published private var _userLoggedOut: Bool = false
     @Published private var _userDeleted: Bool = false
@@ -27,15 +26,6 @@ class StateManager: ObservableObject {
         }
         set {
             self._userLoggedIn = newValue
-        }
-    }
-    
-    var userAgreed: Bool {
-        get {
-            return self._userAgreed
-        }
-        set {
-            self._userAgreed = newValue
         }
     }
     

@@ -12,8 +12,19 @@ var screenWidth = UIScreen.main.bounds.width
 var screenHeight = UIScreen.main.bounds.height
 
 struct ContentView: View {
+    
+    @EnvironmentObject var stateManager: StateManager
+
     var body: some View {
-        AgreementPage()
+        if !stateManager.userLoggedIn {
+            LoginPage()
+        } else {
+            if !stateManager.userRegistered {
+                AgreementPage()
+            } else {
+                MapPage()
+            }
+        }
     }
 }
 

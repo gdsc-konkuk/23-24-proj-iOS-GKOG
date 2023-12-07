@@ -10,7 +10,6 @@ import PhotosUI
 
 struct ProfileImagePicker: View {
     
-    @Binding var member: Member
     @State var profileImageData: Data?
     @State var selectedPhotos: [PhotosPickerItem] = []
     
@@ -18,25 +17,23 @@ struct ProfileImagePicker: View {
         if let imageData = profileImageData, let uiImage = UIImage(data: imageData) {
             return Image(uiImage: uiImage)
         } else {
-            return Image("기본_프로필")
+            return Image("Default_Profile")
         }
     }
     
     var body: some View {
         PhotosPicker(selection: $selectedPhotos, maxSelectionCount: 1, matching: .images) {
             profileImage
-            //이미지의 사이즈를 내가 원하는대로 재조정
                 .resizable()
-            //추후 설명
                 .scaledToFill()
-                .frame(width: 230, height: 230)
-            //이미지를 Circle() 모양으로 자름
+                .frame(width: 190, height: 190)
                 .clipShape(Circle())
                 .overlay(
                     Circle()
+                        .stroke(Color.hexBABABA.opacity(0.4), lineWidth: 1)
                 )
         }
-        .onChange(of: selectedPhotos) { newItem in
+        .onChange(of: selectedPhotos) {
             guard let item = selectedPhotos.first else { return }
             item.loadTransferable(type: Data.self) { result in
                 switch result {

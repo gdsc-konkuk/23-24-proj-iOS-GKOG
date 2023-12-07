@@ -17,63 +17,69 @@ enum NicknameValidation {
 
 struct RegisterPage: View {
     
-    @Binding var member: Member
+    @EnvironmentObject var stateManager: StateManager
+    
+    @State var member: Member = Member()
     
     @State var nicknameValidation: NicknameValidation = .noInput
     @State var nickname: String = ""
     
     var body: some View {
-        ScrollView(.vertical) {
-            VStack(spacing: 40) {
-                // 헤더
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("프로필 설정")
-                            .font(.system(size: 23, weight: .bold))
-                            .foregroundStyle(Color.hex4E483C)
-                            .padding(.bottom, 7)
-                        VStack(alignment: .leading, spacing: 5) {
-                            Text("나를 잘 나타내는 사진과 닉네임을 정해주세요")
-                                .font(.system(size: 17.5, weight: .semibold))
-                            Text("프로필은 모든 사람들에게 보여집니다")
-                                .font(.system(size: 16, weight: .medium))
-                        }
-                        .foregroundStyle(.hex7E7E7E)
-                    }
-                    Spacer()
-                }
-                // 프로필 이미지
-                VStack {
-                    ProfileImagePicker(member: $member)
-                }
-                // 닉네임 필드
-                VStack {
-                    CustomTextField()
-                    Rectangle()
-                        .foregroundStyle(Color.hexBABABA)
-                        .frame(height: 1)
-                    // 유효성 알림 메세지
+        NavigationStack {
+            ScrollView(.vertical) {
+                VStack(spacing: 45) {
+                    // 헤더
                     HStack {
-                        AlertMessage()
+                        VStack(alignment: .leading) {
+                            Text("회원가입")
+                                .font(.system(size: 28, weight: .bold))
+                                .foregroundColor(.hexA98ACE)
+                                .padding(.bottom)
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("나를 잘 나타내는 사진과 닉네임을 정해주세요")
+                                    .font(.system(size: 18, weight: .medium))
+                                    .foregroundColor(.hex4E483C)
+                                Text("프로필은 모든 사람들에게 보여집니다")
+                                    .font(.system(size: 16, weight: .medium))
+                                    .foregroundStyle(.hex7E7E7E)
+                            }
+                        }
                         Spacer()
                     }
+                    .padding(.bottom)
+                    // 프로필 이미지
+                    VStack {
+                        ProfileImagePicker()
+                    }
+                    // 닉네임 필드
+                    VStack {
+                        CustomTextField()
+                        Rectangle()
+                            .foregroundStyle(Color.hexBABABA)
+                            .frame(height: 1)
+                        // 유효성 알림 메세지
+                        HStack {
+                            AlertMessage()
+                            Spacer()
+                        }
+                    }
                 }
+                .padding(.vertical, 30)
             }
+            .padding(30)
         }
-        .padding(30)
         .toolbar(content: {
-            ToolbarItem(placement: .topBarTrailing, content: {
-                Button(action: {
-                    
-                }, label: {
-                    Text("완료")
-                        .font(.system(size: 17, weight: .semibold))
-                        .foregroundStyle(Color.hexA98ACE)
-                })
-                .disabled(nicknameValidation != .validate)
+            ToolbarItem(placement: .confirmationAction, content: {
+                    Button(action: {
+                        stateManager.userRegistered = true
+                    }, label: {
+                        Text("완료")
+                            .font(.system(size: 17, weight: .semibold))
+                            .foregroundStyle(nicknameValidation == .validate ? Color.hexA98ACE : Color.hexBABABA)
+                    })
+                    .disabled(nicknameValidation != .validate)
             })
         })
-        
     }
     
     @ViewBuilder
@@ -110,9 +116,9 @@ struct RegisterPage: View {
         
         switch nicknameValidation {
         case .noInput:
-            Text("예시) 초성ㄴㄴ")
+            Text("닉네임은 필수입니다")
                 .font(.system(size: fontSize))
-                .foregroundColor(.hexA98ACE)
+                .foregroundColor(.hexD76565)
         case .wrongInput:
             Text("닉네임은 한글로만 구성된 2~6자여야 합니다")
                 .font(.system(size: fontSize))
@@ -130,5 +136,5 @@ struct RegisterPage: View {
 }
 
 #Preview {
-    RegisterPage(member: .constant(Member()))
+    RegisterPage()
 }
