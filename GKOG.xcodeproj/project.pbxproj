@@ -72,8 +72,8 @@
 			isa = PBXGroup;
 			children = (
 				090713172AF9CCAB00F1A04B /* Assets.xcassets */,
-				090713122AF9CCAA00F1A04B /* GKOG */,
 				090713112AF9CCAA00F1A04B /* Products */,
+				090713122AF9CCAA00F1A04B /* GKOG */,
 				09EC78DA2B1DAEB900FFCF47 /* Recovered References */,
 			);
 			sourceTree = "<group>";

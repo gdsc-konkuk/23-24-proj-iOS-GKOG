@@ -39,7 +39,7 @@ struct AgreementPage: View {
                             Text("아래 항목에 동의해주세요")
                             
                         }
-                        .font(.system(size: 16, weight: .medium))
+                        .font(.system(size: 17, weight: .medium))
                         .foregroundColor(.hex4E483C)
                     }
                     Spacer()

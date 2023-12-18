@@ -32,7 +32,7 @@ struct RegisterPage: View {
                     HStack {
                         VStack(alignment: .leading) {
                             Text("회원가입")
-                                .font(.system(size: 28, weight: .bold))
+                                .font(.system(size: 27, weight: .bold))
                                 .foregroundColor(.hexA98ACE)
                                 .padding(.bottom)
                             VStack(alignment: .leading, spacing: 4) {
@@ -64,9 +64,9 @@ struct RegisterPage: View {
                         }
                     }
                 }
-                .padding(.vertical, 30)
+                .padding()
             }
-            .padding(30)
+            .padding()
         }
         .toolbar(content: {
             ToolbarItem(placement: .confirmationAction, content: {
