@@ -16,15 +16,16 @@ struct ContentView: View {
     @EnvironmentObject var stateManager: StateManager
 
     var body: some View {
-        if !stateManager.userLoggedIn {
-            LoginPage()
-        } else {
-            if !stateManager.userRegistered {
-                AgreementPage()
-            } else {
-                MapPage()
-            }
-        }
+        MapPage()
+//        if !stateManager.userLoggedIn {
+//            LoginPage()
+//        } else {
+//            if !stateManager.userRegistered {
+//                AgreementPage()
+//            } else {
+//                MapPage()
+//            }
+//        }
     }
 }
 

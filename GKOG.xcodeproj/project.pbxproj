@@ -46,6 +46,7 @@
 		091C1C402B17426200EDA1FC /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		091C1C422B17426B00EDA1FC /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		091C1C442B17434700EDA1FC /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		093714CC2B3020FF00BC4BCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0978E3092B2151C50041BFBE /* SettingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPage.swift; sourceTree = "<group>"; };
 		09EC78DE2B1DB15B00FFCF47 /* AgreementPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementPage.swift; sourceTree = "<group>"; };
 		09EC78E02B1DB16400FFCF47 /* RegisterPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPage.swift; sourceTree = "<group>"; };
@@ -89,6 +90,7 @@
 		090713122AF9CCAA00F1A04B /* GKOG */ = {
 			isa = PBXGroup;
 			children = (
+				093714CC2B3020FF00BC4BCB /* Info.plist */,
 				090713132AF9CCAA00F1A04B /* GKOGApp.swift */,
 				09EC78ED2B1F3A4E00FFCF47 /* Manager */,
 				090713232AF9CCD800F1A04B /* Utils */,
@@ -447,6 +449,9 @@
 				DEVELOPMENT_TEAM = 53DAD6BN6X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GKOG/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This app uses your location to display your current location on the map";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app uses your location to display your current location on the map";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -476,6 +481,9 @@
 				DEVELOPMENT_TEAM = 53DAD6BN6X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GKOG/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This app uses your location to display your current location on the map";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app uses your location to display your current location on the map";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
