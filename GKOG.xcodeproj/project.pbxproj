@@ -20,6 +20,8 @@
 		091C1C412B17426200EDA1FC /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091C1C402B17426200EDA1FC /* Member.swift */; };
 		091C1C432B17426B00EDA1FC /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091C1C422B17426B00EDA1FC /* Event.swift */; };
 		091C1C452B17434700EDA1FC /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091C1C442B17434700EDA1FC /* Comment.swift */; };
+		0965FF362B31557000059D69 /* AccountPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0965FF352B31557000059D69 /* AccountPage.swift */; };
+		09A63B982B31553D00D14CC7 /* SettingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A63B972B31553D00D14CC7 /* SettingPage.swift */; };
 		09EC78EA2B1DB61600FFCF47 /* AgreementPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EC78E92B1DB61600FFCF47 /* AgreementPage.swift */; };
 		09EC78EC2B1DB61D00FFCF47 /* RegisterPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EC78EB2B1DB61D00FFCF47 /* RegisterPage.swift */; };
 		239D0B462B0A0FBD0087B2BD /* CreateCommentModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239D0B452B0A0FBD0087B2BD /* CreateCommentModal.swift */; };
@@ -41,6 +43,8 @@
 		091C1C402B17426200EDA1FC /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		091C1C422B17426B00EDA1FC /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		091C1C442B17434700EDA1FC /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		0965FF352B31557000059D69 /* AccountPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPage.swift; sourceTree = "<group>"; };
+		09A63B972B31553D00D14CC7 /* SettingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPage.swift; sourceTree = "<group>"; };
 		09EC78E92B1DB61600FFCF47 /* AgreementPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementPage.swift; sourceTree = "<group>"; };
 		09EC78EB2B1DB61D00FFCF47 /* RegisterPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPage.swift; sourceTree = "<group>"; };
 		239D0B452B0A0FBD0087B2BD /* CreateCommentModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCommentModal.swift; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 			isa = PBXGroup;
 			children = (
 				090713352AF9CDC800F1A04B /* MyPageView.swift */,
+				09A63B972B31553D00D14CC7 /* SettingPage.swift */,
+				0965FF352B31557000059D69 /* AccountPage.swift */,
 			);
 			path = "My Page";
 			sourceTree = "<group>";
@@ -260,9 +266,11 @@
 				090713162AF9CCAA00F1A04B /* ContentView.swift in Sources */,
 				091C1C432B17426B00EDA1FC /* Event.swift in Sources */,
 				090713362AF9CDC900F1A04B /* MyPageView.swift in Sources */,
+				0965FF362B31557000059D69 /* AccountPage.swift in Sources */,
 				0907132C2AF9CD7F00F1A04B /* MapView.swift in Sources */,
 				239D0B462B0A0FBD0087B2BD /* CreateCommentModal.swift in Sources */,
 				09EC78EA2B1DB61600FFCF47 /* AgreementPage.swift in Sources */,
+				09A63B982B31553D00D14CC7 /* SettingPage.swift in Sources */,
 				090713302AF9CD9800F1A04B /* ListView.swift in Sources */,
 				23C75FC72B15D307007CA112 /* CommentImagePicker.swift in Sources */,
 				090713322AF9CDB400F1A04B /* DetailView.swift in Sources */,
